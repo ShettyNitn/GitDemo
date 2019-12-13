@@ -46,7 +46,7 @@ public class stepDef extends baseReference {
 		PageobjFlightHome ph = new PageobjFlightHome(driver);
 		System.out.println("Before Click");
 		ph.ClickSearch().click();
-		System.out.println("On Click");
+		System.out.println("Yeah Click");
 	}
 
 	@And("^Validate Results are displayed$")
