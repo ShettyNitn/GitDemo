@@ -1,7 +1,10 @@
 package stepDefinition;
 
 import java.io.IOException;
+import java.util.Iterator;
+import java.util.Set;
 
+import org.junit.Assert;
 import org.openqa.selenium.Keys;
 
 import cucumber.api.PendingException;
@@ -10,6 +13,7 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import myTrip.CucumberAutomation.PageobjFlightHome;
+import myTrip.CucumberAutomation.PageobjectHotelSearch;
 import myTrip.CucumberAutomation.baseReference;
 
 public class stepDef extends baseReference {
@@ -30,17 +34,33 @@ public class stepDef extends baseReference {
 		ph.Whereto().sendKeys("Chi");
 		ph.City().click();
 		ph.CheckInOut().click();
-		ph.MonthYear().click();
+		ph.CheckinDate();
+		ph.CheckoutDate();
+		ph.RoomCount();
+		
 
 	}
 
 	@Then("^Search the relevant information$")
 	public void search_the_relevant_information() throws Throwable {
-		throw new PendingException();
+		PageobjFlightHome ph = new PageobjFlightHome(driver);
+		System.out.println("Before Click");
+		ph.ClickSearch().click();
+		System.out.println("On Click");
 	}
 
 	@And("^Validate Results are displayed$")
     public void validate_results_are_displayed() throws Throwable {
-        throw new PendingException();
+		System.out.println("After Click");
+        PageobjectHotelSearch phs=new PageobjectHotelSearch(driver);
+        phs.newtab();
+        Assert.assertTrue(phs.validate().isDisplayed());
+        System.out.println(phs.validate().getText());
+        System.out.println("Done!!!");
+        
+        driver.getTitle();
+        
+        phs.ChooseHotel().click();
+        
     }
 }

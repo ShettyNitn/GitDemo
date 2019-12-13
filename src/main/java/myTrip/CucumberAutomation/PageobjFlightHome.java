@@ -5,6 +5,7 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
 public class PageobjFlightHome {
 
@@ -21,7 +22,9 @@ public class PageobjFlightHome {
 	By Checkinout = By.id("date-range");
 	By year = By.cssSelector("div[class*='Month__MonthName-sc-12ikvnx-0 fijJjj']");
 	By nextMonth = By.cssSelector(".CalendarCard__RightArrow-sc-1jxm5yu-3 > svg:nth-child(1)");
-	By date = By.xpath("//div[contains(@class,'sc-hmXxxW cuJnt')]");
+	//By date = By.xpath("//*[@id='hotel-date-range']/div[2]/div/div/div/div[2]/div/div");
+	By clickRoom= By.id("roomCount");
+	By Search=By.xpath("//*[@id='hotels']/div/div/div/div[5]/button");
 
 	public WebElement SelectCategory() {
 		return driver.findElement(category);
@@ -33,10 +36,10 @@ public class PageobjFlightHome {
 
 	public WebElement City() {
 		int count = driver.findElements(city).size();
-		System.out.println(count);
+	//	System.out.println(count);
 		for (int i = 0; i < count; i++) {
 			String selectCity = driver.findElements(city).get(i).getText();
-			System.out.println(selectCity);
+		//	System.out.println(selectCity);
 			if (selectCity.equalsIgnoreCase("Chicago Heights, IL")) {
 				d = driver.findElements(city).get(i);
 				break;
@@ -51,34 +54,64 @@ public class PageobjFlightHome {
 
 	}
 
-	public WebElement MonthYear() {
+	public void CheckinDate() {
 		int total = driver.findElements(year).size();
-		System.out.println("Size: " + total);
+		//System.out.println("Size: " + total);
 		for (int i = 0; i < total; i++) {
-			String Month = driver.findElements(year).get(i).getText();
-			System.out.println(Month);
-			//driver.findElement(nextMonth).click();
-			if (Month.contains("March")) {
-				driver.findElement(nextMonth).click();
-				System.out.println("Hurray");
+			String Mon = "March";
+		//	System.out.println(driver.findElements(year).get(i).getText());
+			// driver.findElement(nextMonth).click();
+			if (driver.findElements(year).get(i).getText().contains(Mon)) {
+				int selmon = 4;
+				int date = 25;
+				driver.findElement(By.xpath(
+						"//*[@id='hotel-date-range']/div[2]/div/div/div/div[2]/div/div/div["+selmon+"]/div[3]/div["+date+"]/div")).click();
+				break;
 			}
-			else {
-				System.out.println("Inside while: "+Month);
-			}
-		}
-		int count = driver.findElements(date).size();
-		for (int j = 0; j < count; j++) {
-			String checkin = driver.findElements(date).get(j).getText();
-			if (checkin.equalsIgnoreCase("25")) {
-				d = driver.findElement(date);
-			}
-
-		}
-		return d;
+		
+	else
+		driver.findElement(nextMonth).click();
 	}
-
-	public WebElement NextMonth() {
-		return driver.findElement(nextMonth);
+	}
+	
+	public void CheckoutDate() {
+		int total = driver.findElements(year).size();
+	//	System.out.println("Size: " + total);
+		for (int i = 0; i < total; i++) {
+			String Mon = "April";
+		//	System.out.println(driver.findElements(year).get(i).getText());
+			// driver.findElement(nextMonth).click();
+			if (driver.findElements(year).get(i).getText().contains(Mon)) {
+				int selmon = 5;
+				int date = 8;
+				driver.findElement(By.xpath(
+						"//*[@id='hotel-date-range']/div[2]/div/div/div/div[2]/div/div/div["+selmon+"]/div[3]/div["+date+"]/div")).click();
+				break;
+			}
+		
+	else
+		driver.findElement(nextMonth).click();
+	}
+	}
+	public void RoomCount() {
+		int room=3;
+		Select s=new Select(driver.findElement(clickRoom));
+		s.selectByIndex(room);
+	}
+	
+	public WebElement ClickSearch()
+	{
+		return driver.findElement(Search);
 	}
 
 }
+
+/*
+ * * int count = driver.findElements(date).size(); System.out.println(count);
+ * for (int j = 0; j < count; j++) {
+ * 
+ * String checkin = driver.findElements(date).get(j).getText();
+ * System.out.println(checkin); if (checkin.contains("25")) {
+ * driver.findElement(date).click(); break;
+ * 
+ */
