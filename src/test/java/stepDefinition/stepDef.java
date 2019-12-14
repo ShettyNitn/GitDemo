@@ -29,7 +29,7 @@ public class stepDef extends baseReference {
 	@When("^Enter hotel information$")
 	public void enter_hotel_information() throws Throwable {
 		PageobjFlightHome ph = new PageobjFlightHome(driver);
-		ph.SelectCategory().click();
+		//ph.SelectCategory().click();
 		ph.Whereto().click();
 		ph.Whereto().sendKeys("Chi");
 		ph.City().click();
