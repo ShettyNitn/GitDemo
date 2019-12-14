@@ -26,9 +26,9 @@ public class PageobjFlightHome {
 	By clickRoom= By.id("roomCount");
 	By Search=By.xpath("//*[@id='hotels']/div/div/div/div[5]/button");
 
-	public WebElement SelectCategory() {
+/*	public WebElement SelectCategory() {
 		return driver.findElement(category);
-	}
+	}*/
 
 	public WebElement Whereto() {
 		return driver.findElement(whereto);
