@@ -20,7 +20,7 @@ public class baseReference {
 	public WebDriver initialize() throws IOException {
 		prop = new Properties();
 		FileInputStream fis = new FileInputStream(
-				"C:\\Users\\nitin\\eclipse-workspace\\CucumberAutomation\\src\\main\\java\\myTrip\\CucumberAutomation\\Data.properties");
+				"C:\\Users\\nitin\\eclipse-workspace\\CucumberAutomation\\src\\main\\java\\myTrip\\Data.properties");
 		prop.load(fis);
 		Browser = prop.getProperty("browser");
 		System.out.println(Browser);
